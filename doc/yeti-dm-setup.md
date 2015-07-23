@@ -66,7 +66,7 @@ The root zone is modified as follows:
 It might be worthwhile to use the serial value in the SOA field,
 however for now we duplicate the IANA serial value.
 
-The list of Yeti Name Servers is synchronized between the DM as
+The list of Yeti name Servers is synchronized between the DM as
 described below.
 
 Timing
@@ -83,11 +83,56 @@ publishes a new version hourly, on the following schedule:
 
 Synchronizing List of Yeti Name Servers
 =======================================
+It is important that the root zone produced by the Yeti DM is always
+consistent. In order to do this, we use something like a 2-phase
+commit procedure.
+
+A change to the list of Yeti name servers gets put into a PENDING
+directory on any one of the Yeti DM. This directory contains:
+
+* the new list of Yeti name servers
+* the time when the new list will be valid from
+* which Yeti DM have confirmed the new list
+
+Each DM will periodically check this PENDING directory. If the
+directory is present, then the DM will download the new information,
+add a file documenting that it has received it.
+
+Sometime after the scheduled time arrives and before the next Yeti
+root zone is generated, each DM will check if the other DM have both
+received the new list of Yeti name servers. If they have, then the
+list of Yeti name servers will be replaced with the new one. If they
+have NOT, then an alarm is raised, and humans debug the failure.
+
+In pseudocode, something like this:
+
+```
+sync_yeti_roots:
+    loop forever:
+        try rsync with PENDING directory with each other DM
+
+        if PENDING list of roots != my list of roots:
+            update my DM file with current time
+
+        if current time > PENDING scheduled time:
+            if the DM file for each DM has been updated:
+                copy PENDING list of roots to my list of roots
+            else:
+                PANIC (notify a human being)
+
+        sleep a bit
+```
+
+We choose 48 hours as the current time to adopt a new list of Yeti
+name servers. This allows plenty of time for for DM administrators to
+fix issues.
+
+Note that it might be possible to start using the new list of Yeti
+name servers as soon as all DM have received it. However for
+predictability and simplicity we will always use the scheduled for
+now.
 
 
 [1]: https://www.iana.org/domains/root
 [2]: http://yeti-dns.org/operators.html
 [3]: https://www.iana.org/domains/root/servers
-
-
-
