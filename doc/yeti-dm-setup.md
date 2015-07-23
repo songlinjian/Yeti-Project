@@ -96,7 +96,7 @@ directory on any one of the Yeti DM. This directory contains:
 
 * the new list of Yeti name servers
 * the time when the new list will be valid from
-* which Yeti DM have confirmed the new list
+* a file for each Yeti DM which has confirmed the new list
 
 Each DM will periodically check this PENDING directory. If the
 directory is present, then the DM will download the new information,
@@ -116,10 +116,10 @@ sync_yeti_roots:
         try rsync with PENDING directory with each other DM
 
         if PENDING list of roots != my list of roots:
-            update my DM file with current time
+            add a DM file for me in the PENDING directory
 
         if current time > PENDING scheduled time:
-            if the DM file for each DM has been updated:
+            if the DM file for each DM is present:
                 copy PENDING list of roots to my list of roots
             else:
                 PANIC (notify a human being)
