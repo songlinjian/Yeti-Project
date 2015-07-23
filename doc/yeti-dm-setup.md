@@ -133,8 +133,8 @@ fix issues.
 
 Note that it might be possible to start using the new list of Yeti
 name servers as soon as all DM have received it. However for
-predictability and simplicity we will always use the scheduled for
-now.
+predictability and simplicity we will always use the scheduled time
+for now.
 
 [1]: https://www.iana.org/domains/root
 [2]: http://yeti-dns.org/operators.html
