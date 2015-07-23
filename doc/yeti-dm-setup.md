@@ -73,8 +73,8 @@ described below.
 
 Timing
 ------
-Each Yeti DM checks to see if the IANA root zone has changed and
-publishes a new version hourly, on the following schedule:
+Each Yeti DM checks to see if the IANA root zone has changed hourly,
+on the following schedule:
 
 | DM   | Time      |
 |------|-----------|
@@ -82,6 +82,8 @@ publishes a new version hourly, on the following schedule:
 | WIDE | _hour_:20 |
 | TISF | _hour_:40 |
 
+A new version of the Yeti root zone is generated if the IANA root zone
+has changed.
 
 Synchronizing List of Yeti Name Servers
 =======================================
