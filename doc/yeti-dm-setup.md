@@ -76,11 +76,11 @@ Timing
 Each Yeti DM checks to see if the IANA root zone has changed hourly,
 on the following schedule:
 
-| DM   | Time      |
-|------|-----------|
-| BII  | _hour_:00 |
-| WIDE | _hour_:20 |
-| TISF | _hour_:40 |
+| DM   | Time        |
+|------|-------------|
+| BII  | _hour_ + 00 |
+| WIDE | _hour_ + 20 |
+| TISF | _hour_ + 40 |
 
 A new version of the Yeti root zone is generated if the IANA root zone
 has changed.
