@@ -12,7 +12,9 @@ Masters (DM), which provide it to the Yeti root servers.
 
 While in principle this could be done by a single DM, Yeti uses a set
 of three DM. These DM coordinate their work so that the resulting Yeti
-root zone is always consistent.
+root zone is always consistent. (We need to avoid the case where not
+all DM share the same set of Yeti root servers, and so they produce
+different versions of the Yeti root zone with the same serial.)
 
 
 Generation
@@ -63,7 +65,7 @@ The root zone is modified as follows:
     * The DNSKEY records
 * The Yeti root server records are added:
     * The NS records
-    * The A and AAAA glue records
+    * The AAAA glue records
 
 It might be worthwhile to use the serial value in the SOA field,
 however for now we duplicate the IANA serial value.
