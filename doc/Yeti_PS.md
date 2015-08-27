@@ -29,8 +29,8 @@ Accordingly, to the problem space there is solution space existing which needs e
 
 * Multiple zone file signers. To discover the flexibility and resiliency limits of Internet governance design, we can try multiple DMs with one KSK and one ZSK for all, and we can try multiple DMs with one KSK for all and one ZSK for each.
 
-## We are not ...
+## We are not
 
 * We **never and ever try  to create and provide alternate name space**. Yeti DNS project has complete fealty to IANA as the DNS name space manager from the beginning of its conception. Any necessary modifications of the current IANA zone (like the NS recode for "." ) will be dicussed publicly and given a clear reason. 
 
-* We are not going to develop or expriment alternative governance model, regarding the concern arised in many occations that a certain TLD(mostly ccTLD) will be removed intentionally as an additional option for punishment or sanction from USG to against its rivals. It maybe discussed or studied by differenet projects, but not Yeti. In Yeti We keep the same trust anchor(KSK) and the chain of trust to prevents on-path attacks and prvasiavley distribute root services base on the current model.
+* We are not going to develop or expriment alternative governance model, regarding the concern arised in many occations that a certain TLD(mostly ccTLD) will be removed intentionally as an additional option for punishment or sanction from USG to against its rivals. It maybe discussed or studied by differenet projects, but not Yeti. In Yeti we keep the same trust anchor(KSK) and the chain of trust to prevent on-path attacks and prvasiavley distribute root services base on the current model.
