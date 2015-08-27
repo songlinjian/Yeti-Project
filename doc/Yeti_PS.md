@@ -1,15 +1,11 @@
 ## Problem Statement 
 
-The problems and policy concerns over Root DNS system mainly stem from unfortunate centralization from the point of view of DNS content consumers, including external dependency, surveillance, and malicious TLD-adding/removing threat. 
+The problems and policy concerns over Root DNS system mainly stem from unfortunate centralization from the point of view of DNS content consumers, including external dependency, surveillance threat. 
 
 * External Dependency. Currently, there are 12 Root DNS operators, 13 root Letter with 400+ instances deployed globally. Compared to the connected devices, AS networks, recursive server, the number of root instance is far from sufficiency. Connectivity loss between one autonomous network and the IANA root name servers usually results in loss of local service within the local network, even when internal connectivity is perfect. Also this kind of extenral dependcy will introduce extra cost when BGP routing path is occationally lenghtened by route flapping.
 
 * Surveillance risk. Even when one or more root name server anycast
 instances are deployed locally or nearby, the queries sent to the root servers carry DNS lookup information which enables root operators or other partie to analyize the DNS query traffic. This is a kind of information leakage in some extent which will not be acceptable by local network policy maker.
-
-* Accidental TLD mis-modification Issue. Now the comany Verisign acts as root zone maintainer to produce signed root zone file and distributed to other root server operator. Accidental mistake is possible to introduced due to the single point of failure, some due to the company financial problem, some due to people is fault by mis-configuration, mis-operation, some due to unavoidable disaster like earthquake. 
-
-* Intentional TLD mis-modification Issue. Currently the DNS root zone is managed based on ICANN/NTIA/Verisign cooperation model. There is always a concern arised in many occations that a certain TLD(mostly ccTLD) will be removed intentionally as an additional option for punishment or sanction from USG to against its rivals. Althought it is not techinical-driven issue, but if given good techinical design will leave rooms for policy making, it worthwhile to review the problem in technical point of view.
 
 There are also some techinical problems in IPv6, DNSSEC and Renumbering operation since them are firstly introduce to the root system. 
 
@@ -29,6 +25,12 @@ Accordingly, to the problem space there is solution space existing which needs e
 
 * More root servers. We are going to test more than 13 root name server in Yeti testbed and to see "how many is too many".
 
-* Multiple zone file editors. We will use IANA root zone as a source of zone info. Each of BII, TISF, and WIDE modifies the zone independantly at only its apex. Some mechinisms should be coined to prevent accidental or intentional mis-modificaiton of Root zone. In addtional we can also find a solution supporting “shared zone control” methods proposed in the ICANN ITI report* from 2014. ICANN ITI report : https://www.icann.org/en/system/files/files/iti-report-15may14-en.pdf
+* Multiple zone file editors. We will use IANA root zone as a source of zone info. Each of BII, TISF, and WIDE modifies the zone independantly at only its apex. Some mechinisms should be coined to prevent accidental mis-modificaiton of Root zone. In addtional we may implement and test “shared zone control” idears proposed in the ICANN ITI report* from 2014. ICANN ITI report : https://www.icann.org/en/system/files/files/iti-report-15may14-en.pdf
 
-* Multiple zone file signers. To break the single point of failure for the role of root zone maintainer, we canintroduce more players sharing the same key to maintain and sign the zone. We can try multiple DMs with one KSK,One ZSK, or multiple DMS with one KSK and multiple ZSK.
+* Multiple zone file signers. To discover the flexibility and resiliency limits of Internet governance design, we can try multiple DMs with one KSK and one ZSK for all, and we can try multiple DMs with one KSK for all and one ZSK for each.
+
+## We are not ...
+
+* Since this project complete fealty to IANA as the DNS name space manager from the beginning of its conception. So we **never and ever try or do any experiment to create and provide alternate name space**. Any modification of the current IANA zone will be dicussed publicly and given a clear reason. 
+
+* 
