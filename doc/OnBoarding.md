@@ -15,11 +15,12 @@ our expectation :
 
 * Understand the purpose and the goal of Yeti projec
 * Have some experience on operation of relevant DNS server(s)
-* Software , Hardware and Network
- * A dedicated server or VPS 
+* Software , Hardware and Network requirement:  
+ * A dedicated server or VPS which only hosts root zone
  * A dedicated IPv6 address (EU64 IPv6 address is not recommand)
- * A decidcated Domain for the server
+ * A decidcated Domain for the server which only has AAAAA record attached to it
  * Stable and non-tunnel IPv6 network
+ * The authority servers should be stable and The NS servers of that domain should be stable 
  
 * Human resources commitment
 
