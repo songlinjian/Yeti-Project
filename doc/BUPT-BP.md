@@ -2,6 +2,15 @@
 
 ## Introduction 
 
+
+
+### Yeti introduction(IPv6-only DNS)
+### BUPT IPv6 experince
+### For Whom is this Document Intended?
+
+This manual will serve as a case study of BUPT's activites and validation 
+of Yeti concept, show you how to join Yeti testbed using IPv6-only root services.
+
 ## Deployment
 
 ### Structure
