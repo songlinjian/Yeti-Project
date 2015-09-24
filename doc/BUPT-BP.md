@@ -14,7 +14,7 @@ of Yeti concept, show you how to join Yeti testbed using IPv6-only root services
 ## Deployment
 
 ### Structure
-* yeti root instance
+* Yeti root instance
 * Yeti RDNS
 * Yeti DHCPv6
 * Yeti WIFI Hotspot
