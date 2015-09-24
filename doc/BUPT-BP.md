@@ -22,7 +22,7 @@ of Yeti concept, show you how to join Yeti testbed using IPv6-only root services
 ### Problem
 * End user for dhcpv6
 * route loop
-* 
+
 ## policy
 How we approch people and annoucnement for this experiment
 
