@@ -1,4 +1,4 @@
-# Yeti deployment in BUPT
+# A Case Study of Yeti deployment in BUPT
 
 ## Introduction 
 
