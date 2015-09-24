@@ -57,8 +57,9 @@ operator 7 daysin advance
 
 From both research and operational aspects it sounds OK, given that in IANA root 
 system VeriSign runs A and J. The only concerns are : 1) the diversity of 
-system and network; 2) the opportunity for future participants given 25 is our 
-estimate number of of Yeti root NS server.
+system and network; 2) the opportunity for future participants given 25 is our estimate 
+number of of Yeti root NS server (Idealy 25 operator are from diffrenet countries and 
+continents).
 
 There is a aggreement for Yeti operator who would like to run **Additional root server** :
 
@@ -67,9 +68,9 @@ servers is less than MAX_NUM_Root in Yeti testbed (currently 25);
 * meet the basic technical requirement for the addtiaonal sever;
 * provide the information of addtional server, IPv6 address(AFXR), domain name, 
 the software and versiton;
-* Coordinators reserve right to reclaim the **Additional root server** in case:
+* Coordinators reserve the right to reclaim the **Additional root server** in case:
   * no room for new yeti root operator (given 25 is the limit)
-  * and others
+
 
 ### Make some recommandations to yeti root server operators
 
