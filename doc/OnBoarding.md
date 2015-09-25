@@ -6,15 +6,12 @@
 * Document the basic technical requirement for Yeti root servers as well as the expectation of human resources as a Yeti root operator
 * Specify the procedure of how to join and how to quit as yeti root operator
 * Consider the case of one operator running multiple root servers
-
 * Make some recommendations to Yeti root server operators.
 
-## Checklist of onborading a new member of Yeti Root operator
+## Procedure and checkelist of onborading a new member of Yeti Root operator
 
 1. An application mail is received at the coordinator mailing list.
-
 2. The BII coordinator (currently Davey) creates a ticket in Yeti RT system and takes ownership.
-
 3. The BII coordinator will perform checks to verify that the applicant meets the technical requirements. These may be (should be) in an automated tool. The checks include, but are not limited to:
 
   * Verify that the hostname matches the IPv6 address given.
@@ -25,28 +22,19 @@
   * Check anything missing for the application
 
   If the technical requirements are not met, then the BII coordinator will reply to the applicant via the ticket.
-
 4. Each coordinator will need to review the request at this point and record the approvel decision or other suggestions in RT system. Coordinators can simply make a decision or discuss the application via RT system which also will be recorded in RT.
-
 5. No matter all coordinators approved or not, then a comment will be added to the ticket, and the ticket will be resolved. BII Coordinator will issue an e-mail of the final decision sent to the applicant.
-
 6. If the application is approved, BII coordinator adds the new name server to the list of Yeti roots, via the **Yeti DM synchronization procedure**(a seperate Yeti document will introduce this). This means waiting for the IANA serial to advance to the desired serial number.
-
-7. The BII coordinator verifies that all coordinators are producing the correct Yeti root zone after the publication serial.
-
+7. The BII coordinator verifies that all coordinators are producing the correct Yeti 
+8. root zone after the publication serial.
 8. The BII coordinator updates the Yeti root.hints file in the GitHub repository.
-
 9. The BII coordinator updates the Yeti internal document which
    contains the details of all Yeti root operators. (Currently a
    Google doc which will be moved to Yeti Team tool，mattermost for example )
-
 10. The BII coordinator updates the Yeti web page with the information about the new Yeti operator.
-
 11. The BII coordinator sends a mail to the Yeti discuss and Yeti
    operators lists announcing the new operator, and inviting them tointroduce themselves.
-
 12. The BII coordinator closes the ticket.
-
 13. Champagne.
 
 ##Basic requirement for Yeti root server operator
@@ -54,9 +42,7 @@
 To be come a Yeti root operator, you should know the basic requirements and our expectations:
 
 * Understand the purpose and the goal of Yeti project
-
 * Have some experience on operation of relevant DNS server(s)
-
 * Software, hardware, and network requirements:
 
 	* A dedicated server or VPS which only hosts the Yeti root zone
@@ -64,7 +50,6 @@ To be come a Yeti root operator, you should know the basic requirements and our 
 	* A dedicated IPv6 address (EU64 IPv6 address is not recommended)
 	* A dedicated domain name for the server which only has an AAAA record attached to it
 	* The authority servers should be stable and the NS servers of that domain name should be stable
-
 *Human resources commitment
 
 Because it is a live testbed for root system experiment, so we do not expect any urgent configuration changes. However, the server cannot be fully on auto-pilot, due to experiments that will affect the distribution master servers and may require changes to the authority servers. Therefore, we expect authority operators to offer 24-hour response time to questions and outage notifications, and 72-hour response time for planned configuration changes.
