@@ -3,8 +3,8 @@
 **Scope**: The document will:
 
 * Document the coordinator's operation procedue and checklist to onboard a new member 
-* Document the basic technical requirement for Yeti root servers as well as the expectation of human resources as a Yeti root operator.
-* Specify the procedure of how to join and how to quit as yeti root operator.
+* Document the basic technical requirement for Yeti root servers as well as the expectation of human resources as a Yeti root operator
+* Specify the procedure of how to join and how to quit as yeti root operator
 * Consider the case of one operator running multiple root servers
 
 * Make some recommendations to Yeti root server operators.
