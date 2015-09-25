@@ -86,6 +86,6 @@ There is an agreement for a Yeti operator who would like to run **Additional roo
 * Note that coordinators reserve the right to reclaim the **Additional root server** in case no room for new Yeti root operator (given that there is a limit).
 
 
-Make some recommendations to yeti root server operators
+## Make some recommendations to yeti root server operators
 
 [TODO]
