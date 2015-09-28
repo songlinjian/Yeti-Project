@@ -90,6 +90,6 @@ There is an agreement for a Yeti operator who would like to run **Additional roo
 
 ## Some recommendations to yeti root server operators
 
-* To let peopole know more about you and your organiztion, please send us a link to us : "About us" page in your commany website, or a dedicated page for yeti to introduce youself.
+* To let people know more about you and your organiztion, please send us a link to us : "About us" page in your commany website, or a dedicated page for yeti to introduce yourself.
 * To be more active in Yeti community, please do pay attention and join the discussion of Yeti mailling list. 
 * Now we do not have much traffic in our testbed in the early phase. It will be appreciated if you can introduce Yeti to the people/ universitiues/ IPv6 pilot/ research labs who may be insterestd to use yeti root services as experimental testbed.   
