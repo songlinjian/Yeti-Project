@@ -48,11 +48,13 @@ To be come a Yeti root operator, you should know the basic requirements and our 
 	* A dedicated server or VPS which only hosts the Yeti root zone
 	* A stable and non-tunneled IPv6 network
 	* A dedicated IPv6 address (EU64 IPv6 address is not recommended)
-	* A dedicated domain name for the server which only has an AAAA record attached to it
-	* The authority servers should be stable and the NS servers of that domain name should be stable
+	* A dedicated domain name for the server which should have no A record attached to it.(We expect IPv6-only root)
+	* Both the Yeti root server and its NS servers should be in a good health (stable for access)
+	* The Yeti root server should not serve any other zone except yeti root zone
+	
 *Human resources commitment
 
-Because it is a live testbed for root system experiment, so we do not expect any urgent configuration changes. However, the server cannot be fully on auto-pilot, due to experiments that will affect the distribution master servers and may require changes to the authority servers. Therefore, we expect authority operators to offer 24-hour response time to questions and outage notifications, and 72-hour response time for planned configuration changes.
+Because it is a live testbed for root system experiment, so we do not expect any urgent configuration changes. However, the server cannot be fully on auto-pilot, due to experiments that will affect the distribution master servers and may require changes to the authority servers. Therefore, we expect authority operators to offer 24-hour response time to questions and outage notifications, and 72-hour response time for planned configuration changes. There is a Yeti health monitoring page : http://yeti-dns.org/yeti_server_status.txt which can indicate the status of yeti root servers.
 
 Note: The coordinators of Yeti DNS project reserve the right to deny the application or remove an existing operator if they can not meet the basic requirements.
 
@@ -73,7 +75,7 @@ FQDN of the server.
 
 ## Considerations in running multiple Yeti root servers by one operator
 
-From both research and operational aspects it sounds OK, given that in the IANA root system Verisign runs the A and J root servers. The only concerns are:
+From both research and operational aspects it sounds OK, the only concerns are:
 
 1) The diversity of system and network, and 2) The opportunity for future participants given 25 is our target number of of Yeti root servers (ideally 25 operator are from different countries and a various continents).
 
