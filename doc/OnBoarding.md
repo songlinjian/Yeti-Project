@@ -90,5 +90,5 @@ There is an agreement for a Yeti operator who would like to run **Additional roo
 
 ## Some recommendations to yeti root server operators
 
-* To let more peopole know about you and your organiztion, please send us a link about you , about us page in your commany website, or a dedicated page for yeti.
+* To let peopole know more about you and your organiztion, please send us a link to us : "About us" page in your commany website, or a dedicated page for yeti to introduce youself.
 * More...
