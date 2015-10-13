@@ -49,6 +49,7 @@ To be come a Yeti root operator, you should know the basic requirements and our 
 	* A stable and non-tunneled IPv6 network
 	* A dedicated IPv6 address (EU64 IPv6 address is not recommended)
 	* A dedicated domain name for the server which should have no A record attached to it.(We expect IPv6-only root)
+	* Support DNSSEC.
 	* Both the Yeti root server and its NS servers should be in a good health (stable for access)
 	* The Yeti root server should not serve any other zone except yeti root zone
 	
