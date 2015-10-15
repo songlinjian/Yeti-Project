@@ -4,7 +4,7 @@
 
 * Research Project Title 
 ```
-Yeti DNS Project
+Research and Technical activities in Yeti DNS Project
 ```
 * The research project is submitted on behalf of an organization
 * Name of organization conducting the research
@@ -76,11 +76,11 @@ https://www.linkedin.com/pub/davey-song/75/256/242
 ```
 Davey got Ph.D from Tsinghua University and his research mainly focus on the field of 
 Internet architecure and IPv6 transition. In BII he lead serveal IPv6 pilot projects 
-in China.
+in China. 
  
 1. Project(mainly in China):
 	1)IPv6 transition InterOp, 2012, Chief architect and manager
-	2)IPv6 enabled programe (IPv6 Forum),2013,as designer of 		Certificate test for IPv6 
+	2)IPv6 enabled programe (IPv6 Forum),2013,as designer of Certificate test for IPv6 
 	readiness of website and DNS system
 	3)IPv6 and DNS monitoring and analysis platform, 2014 (sub-projcet from CNGI)
 
@@ -107,8 +107,10 @@ Based on Divide and Conquer Strategy in Ad Hoc Network. CWSN’07
 based on combination of central control and self-organization. IJAHUC, 2007 
 
 3.Some IETF work
-
-
+draft-song-dnsop-tcp-primingexchange-00.txt
+draft-song-sunset4-ipv6only-dns-00.txt
+draft-madi-dnsop-udp4dns-00.txt
+draft-muks-dns-message-fragments-00.txt
 ```
 ## Summary of research proposal
 
@@ -121,10 +123,21 @@ Internet in the Asia Pacific region to widen its coverage, use and benefit for t
 necessary, include references to support your argument.
 
 ```
+Yeti DNS project's aim is to build a live Root DNS server system testbed for operational research. 
+It is founded by three parties including BII, WIDE and TISF, contributed by its participants. It 
+has three-years duration and specific research scope. To be clear, this application of the grant 
+is not for the whole project for three years. The grant will be applied by one of the founders & 
+coordinators BII to support its research and technical activites in the scope of Yeti DNS project 
+in the first year. 
+
+Firstly, the background of Yeti DNS project will be introduced, and then interest of BII in Yeti 
+project and its relevence for Internet operation in AP region will be explained briefly. The last 
+is the expected outcome.
+
 1. Introduction of Yeti DNS Project
 
-"One World, One Internet, One Namespace" is the essence for the success of today's Internet. T
-he top level of the unique identifier system, the DNS root system, has been operational for 25+ 
+"One World, One Internet, One Namespace" is the essence for the success of today's Internet. 
+The top level of the unique identifier system, the DNS root system, has been operational for 25+ 
 years. It is a pivot to make the current Internet useful. So it is considered somewhat ossified 
 for stability reasons. It is hard to test and implement new ideas evolving to a more advanced level 
 to counter challenges like IPv6-only operation, DNSSEC key/algorithm rollover, scaling issues, etc. 
@@ -137,121 +150,107 @@ diversified, to study the effect of the changes in question.
 As a result the proposal of the Yeti DNS Project is formed which is aiming to build such a live 
 environment. The basic idea is to build a paralleled experimental live root system to provide 
 useful technical output with the existing production systems. Possible research agenda will be 
-explored on this testbed covering several aspects but not limited to: IPv6-only operation, DNSSEC 
-key rollover, Renumbering issue, the scalability issues, multiple zone file signers and Multiple 
-zone file signers. In addition measurement study will be done to issue out useful analysis as 
-output of the Yeti DNS Project.
+explored on this testbed covering several aspects but not limited to: 
+	* IPv6-only operation
+	* DNSSEC key rollover
+	* Renumbering issues
+	* Scalability issues
+	* Multiple zone file signers
 
-Participants will be invited into the Yeti DNS Project which is hopefully helpful for their 
-own interests. We would like to invite some interested parties in this community, like the 
-research labs of universities and institutes. We also hope the Yeti DNS Project can gain the 
-support from vendors, for example, the DNS software implementers, Developers of CPE devices & 
-IoT devices, Middlebox developers who can test their product and connect their own testbed into 
-the Yeti DNS testbed. It is expected that the activity of the Yeti DNS Project could have good 
-input to the DNS related industry, which will finally make them ready for advanced DNS and Root 
-services.  
+Interested parties in this community like individual researchers, labs of universities, 
+companies and institutes are welcome to join us as Yeti root server operators (at least 
+25 operators), recursive name server operators, and individual researchers. It is expected 
+that Yeti Project can also gain the support from vendors, for example, the DNS software 
+implementers, Developers of CPE devices & IoT devices, middle box developers who can test 
+their product and connect their own testbed into Yeti testbed.
 
-Possible research agenda will be explored on this testbed covering several aspects but not 
-limited to:
+Note that the Yeti DNS project has complete fealty to IANA as the DNS name space manager. 
+All IANA top-level domain names will be precisely expressed in the Yeti DNS system, 
+including all TLD data and meta-data. We hope to inform the IANA community by peer-reviewed 
+science as to future possibilities to consider for the IANA root DNS system.
 
-* IPv6-only operation
-* DNSSEC key rollover
-* Renumbering issues
-* Scalability issues
-* Multiple zone file signers
+For more information, please visit www.yeti-dns.org.
 
-2. Relevence for Internet Opertation in Asia Pacific region
+2. Research Interest and activities of BII in Yeti DNS project
 
-By caculate 
+BII aims of specification, testing and research on reliability, interoperability, 
+security of Internet architecture technology, like IPv6, DNS,IEEE1888 and SDN. In one 
+hand, expertise and know-how on specific area is value of BII for its consulting customer, 
+on another hand, BII hope to develop and contribute Internet by outreaching and building
+connections with community.
 
-3. The pontential outcome
+As to the Interest of BII in Yeti DNS Project, there are mainly two points:
+
+1) IPv6-only operational study. It is Davey's personal research interest to investigate 
+the capability of IPv6-only network and system. It is important for DNS to migrate to 
+dual-stack and pure IPv6 environment in the whole process of IPv6 transition. However, 
+currently many DNS are still  work on IPv4-only environment, even for NS server for large 
+Internet company like google. There is a early talk given by Davey in ICANN Tech day.
+
+https://singapore49.icann.org/en/schedule/mon-tech/presentation-ipv6-transition-24mar14-en.pdf   
+
+2) Operational policy and technical study for DNS root system. 
+
+Technically it is interesting for us to firstly study the system mechanism of IANA root 
+server operation, then explore the possibility of future advanced DNS root system. There 
+are some discussion and proposals in ICANN ITI panel to predict the future DNS and root 
+system (https://www.icann.org/en/system/files/files/iti-report-15may14-en.pdf).
+  
+There are also IETF drafts discuss how to pervasively distribute the root services by 
+using unowned address (draft-lee-dnsop-scalingroot-00), or reduce the latency by slaving 
+the root via Loopback address (draft-ietf-dnsop-root-loopback-05).
+
+In Yeti DNS project, We hope to measure whether 512B limit still hold in IPv6 environment, 
+We also hope to explore operational proposals to increasing the number of root server. 
+
+3. Relevance for Internet Operation in Asia Pacific region
+
+The two points of BII's interest should be applicable for the context of this section 
+as well, which will definitely help to enhance the technical communication and information 
+sharing in the technical community in AP region. 
+
+In addition, the administration of DNS root system is a hot topic in Internet governance 
+field, political and technical mixed field, given the background of IANA transition. 
+
+Compared to RIPE NCC and ARIN regions, the number of root server operator and the number 
+of root server instances in AP region do not match the population of netizens and booming 
+internet development in this region. Internet communities from countries like China, 
+India and Korea may hope to increase their importance in both technical and policy 
+decisions. Especially after Snowden event, more importance will be attached to reduce 
+external dependency and  surveillance risk which is addressed in the problem statement 
+of Yeti DNS project. (https://github.com/BII-Lab/Yeti-Project/blob/master/doc/Yeti_PS.md )
+
+4. The pontential outcome
+
+From BII's perspective, our research and technical activities in Yeti DNS project will 
+firstly benefit the project with our engineer work, by building the tesbed, maintain 
+the sub-system of this project like website, mailing list, tickets system, Traffic 
+capture and collection, root system Monitoring etc. 
+
+We will also proposal experiment idea, test in BII lab's environment, and ask the Yeti 
+community to approve before we put into Yeti testbed. During the firstly of Yeti DNS 
+project, BII will produce some draft proposal in the scope of Yeti, test plan and technical 
+report fot some experiments. According to the result of experiments, hopefully we can output 
+some IETF experimental/ informational document and research papers
+
+During the first year, we are going to organize some Yeti DNS project gathering, like beer 
+bof meeting or yeti workshop. We will participant in some international conference to 
+introduce our activity and technical findings.
+
+We are glad to work closely with APNIC and participants in AP region.
 
 ```
 ### Research objective: 
 Main focus of the research, what it wants to achieve.
 
 ```
+The Problem statment and research objectives of Yeti DNS project is posted in Yeti 
+website and Github repo: https://github.com/BII-Lab/Yeti-Project/blob/master/doc/Yeti_PS.md
 
-1. Problem Statement
+The BII's research and technical activities in the first year including following 
+activities: 
 
-Some problems and policy concerns over the DNS Root Server system stem from 
-unfortunate centralization from the point of view of DNS content consumers. 
-These include external dependencies and surveillance threats.
-
-* External Dependency
-Currently, there are 12 DNS Root Server operators for the 13 Root Server 
-letters, with more than 400 instances deployed globally. Compared to the number 
-of connected devices, AS networks, and recursive DNS servers, the number of 
-root instances is far from sufficient. Connectivity loss between one autonomous 
-network and the IANA root name servers usually results in loss of local service 
-within the local network, even when internal connectivity is perfect. Also this 
-kind of external dependency will introduce extra network traffic cost when BGP 
-routing is inefficient.
-
-*Surveillance risk. 
-Even when one or more root name server anycast instances are deployed locally or 
-in a nearby network, the queries sent to the root servers carry DNS lookup information 
-which enables root operators or other parties to analyize the DNS query traffic. 
-This is a kind of information leakage which is to some extent not acceptable to 
-some policy makers.
-
-There are some technical issues in the areas of IPv6 and DNSSEC, which were introduced 
-to the DNS Root Server system after it was created, and also when renumbering DNS 
-Root Servers.
-
-* Currently DNS mostly relies on IPv4. Some DNS servers which support both A & AAAA 
-(IPv4 & IPv6) records still do not respond to IPv6 queries. IPv6 introduces larger 
-IP packet MTU (1280 bytes) and a different fragmentation model. It is not clear 
-whether it can survive without IPv4 (in an IPv6-only enviroment), or what the 
-impact of IPv6-only environment introduces to current DNS operations (especially 
-in the DNS Root Server system).
-
-* KSK rollover, as a procedure to update the public key in resolvers, has been a 
-significant issue in DNSSEC. Currently, IANA rolls the ZSK every six weeks but 
-the KSK has never been rolled as of writing. Thus, the way of rolling the KSK and 
-the effect of rolling keys (including both ZSK and KSK) frequently are not yet 
-fully examined. It is worthwhile to test KSK rollover using RFC5011 to synchronize 
-the validators in a live DNS root system. In addition, currently for the ZSK 
-1024-bit RSA keys are used, and for the KSK 2048-bit RSA keys are used. The effect 
-of using key with more bits has never tested. A longer key will enlarge DNS answer 
-packets with DNSSEC, which is not desirable. It is valuable to observe the effect 
-of changing key bit-lengths in a test environment. Different encryption algorithms, 
-such as ECC, are another factor that would also affect packet size.
-
-* Renumbering issue. Currently Internet users or enterprises may change their network 
-providers. As a result their Internet numbers for particular servers or services, 
-like IP address and AS numbers, may change accordingly. This is called renumbering 
-networks and servers. It is likely that root operators may change their IP addresses 
-for root servers as well. Since there is no dynamic update mechanism to inform 
-resolvers and other internet infrastructure relying on root servic of such changes, 
-the renumbering issue of root server is a fragile part of the whole system.
-
-2. Research plan
-
-According to the problem space there is a reasech topic list to address each problem. 
-
-* IPv6-Only Operation. We are try to run the Yeti testbed in pure IPv6 environment.
-    
-* Key/Algorithm rollover. We are going to design a plan on Yeti testbed and conduct 
-some experiment with more frequent change of ZSK and KSK.
-
-* DNS Root Server renumbering. We may come up with a mechnism which dynamically 
-updates root server addresses to hint file. 
-
-* More root servers. We are going to test more than 13 root name server in Yeti testbed 
-and to see "how many is too many".
-
-* Multiple zone file editors. We will use IANA root zone as a source of zone info. Each 
-of BII, TISF, and WIDE modifies the zone independantly at only its apex. Some mechinisms 
-will be coined to prevent accidental mis-modificaiton of the DNS Root zone. In addition 
-we may implement and test “shared zone control” ideas proposed in the ICANN ITI report 
-from 2014. ICANN ITI report: https://www.icann.org/en/system/files/files/iti-report-15may14-en.pdf
-
-* Multiple zone file signers. To discover the flexibility and resiliency limits of 
-Internet root zone distribution designs, we can try multiple DMs with one KSK and one 
-ZSK for all, and we can try multiple DMs with one KSK for all and one ZSK for each.
-
-3. Building Yeti Testbed 
+1. Building Yeti Testbed and procedure of project mangement 
 
 Before we conduct any experiment a stable tstbed enviroment is necessary to support all 
 the research activities. There is a list of documents posted in the yeti DNS project 
@@ -275,34 +274,42 @@ To support the project, some engineer work is also needed to build and maintian 
 project website, mailing list, tickets system, Traffic capture and collection, root 
 system Monitoring etc.
 
-4. Introducing Experimental Traffic 
+2. Introducing Experimental Traffic 
 
 For operational reaserch it is very impoart to have sufficient real traffic in Yeti 
 testbed in order to make any messurement operational meaningful. Their are three 
 approaches:
 
-1) Deploy some resolves in Universities and research region. Yeti deployment in BUPT 
+* Deploy some resolves in Universities and research region. Yeti deployment in BUPT 
 is a typical case. Although it only contributes less than 1 qps into Yeti root system, 
 but it views as a good example to expand our Testbed.
+* Mirror and replay some real traffics  (impelment by one of yeti participant)
+* Use some existing experimental tool like Atlas to generate traffic for special experiment;
 
-In early phase we ca also try :
 
-2) Mirrior and replay some real traffics  (impelment by one of yeti participant)
-3) Use some existing experimental tool like Atlas to generate traffic for special experiment;
+3. Research and experiment 
 
-5.We are not
+* IPv6-Only Operation. We are try to run the Yeti testbed in pure IPv6 environment.
+    
+* DNS Root Server renumbering. We may come up with a mechnism which dynamically 
+updates root server addresses to hint file. 
 
-* We never and ever try to create and provide alternate name space. Yeti DNS project has 
-complete fealty to IANA as the DNS name space manager from the beginning of its conception. 
-Any necessary modifications of the current IANA zone (like the NS records for "." ) will be 
-dicussed publicly and given a clear reason.
+* More root servers. We are going to test more than 13 root name server in Yeti testbed 
+and to see "how many is too many".
 
-* We are not going to develop or expriment with alternative governance models, regarding 
-the concern arised in many occasions that a certain TLD (mostly ccTLD) will be removed 
-intentionally as an additional option for punishment or sanction from USG to against 
-its rivals. It maybe discussed or studied by different projects, but not Yeti. In Yeti 
-we keep the same trust anchor (KSK) and the chain of trust to prevent on-path attacks and 
-distribute root services based on the current model.
+* Multiple zone file editors. We will use IANA root zone as a source of zone info. Each 
+of BII, TISF, and WIDE modifies the zone independently at only its apex. Some mechinisms 
+will be coined to prevent accidental mis-modification of the DNS Root zone. 
+
+we already have proposals on this issue:
+https://github.com/BII-Lab/Yeti-Project/blob/master/doc/Yeti-DM-Setup.md
+https://github.com/BII-Lab/Yeti-Project/blob/master/doc/Yeti-DM-Sync.md
+
+* Multiple zone file signers. To discover the flexibility and resiliency limits of 
+Internet root zone distribution designs, we can try multiple DMs with one KSK and one 
+ZSK for all, and we can try multiple DMs with one KSK for all and one ZSK for each.
+
+
 ```
 
 ### Research Methodology: 
