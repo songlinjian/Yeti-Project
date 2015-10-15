@@ -303,10 +303,6 @@ intentionally as an additional option for punishment or sanction from USG to aga
 its rivals. It maybe discussed or studied by different projects, but not Yeti. In Yeti 
 we keep the same trust anchor (KSK) and the chain of trust to prevent on-path attacks and 
 distribute root services based on the current model.
-         1         2         3         4         5         6         7         8         9
-123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123
-
-
 ```
 
 ### Research Methodology: 
@@ -396,6 +392,7 @@ report detailing these changes, as well as changes in network load and so on
 would be published.
 
 ```
+
 ### Research capacity and supporting environment:
 Research team experience and capacity to achieve the planned objective and details 
 about the supporting environment in which the research team will be working hosted 
