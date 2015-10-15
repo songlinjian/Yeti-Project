@@ -303,6 +303,9 @@ intentionally as an additional option for punishment or sanction from USG to aga
 its rivals. It maybe discussed or studied by different projects, but not Yeti. In Yeti 
 we keep the same trust anchor (KSK) and the chain of trust to prevent on-path attacks and 
 distribute root services based on the current model.
+         1         2         3         4         5         6         7         8         9
+123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123
+
 
 ```
 
@@ -310,14 +313,87 @@ distribute root services based on the current model.
 How the research will be undertaken, data availability, data processing, etc.
 
 ```
-Experiment protocol and plan 
-Operationa study tool 
-	system monitoring
-	traffic capture and analysis (DSC page)
+Each experiment will have a unique design, depending on the particular topic
+being researched. Nevertheless, they will usually share common features, which
+mean setting up a set of DNS servers in a specific configuration, then
+measuring the query traffic that comes in and looking for given behavior.
 
-2 examples
-	Yeti Root naming scheme and Glue issue
-    Knot 2.0 bugs
+Experiments may be executed either in a lab-only environment, or on the Yeti
+platform at large. A lab-only experiment can be executed by BII independently.
+
+Experiments that are run on the Yeti platform require a consensus of the
+participants, of who BII is currently one of 13. The Yeti project has a simple
+experimental protocol:
+
+https://github.com/shane-kerr/Yeti-Project/blob/experimental-protocol/doc/Experiment-Protocol.md
+
+An experiment on the Yeti platform goes through four phases:
+
+1. Proposal  
+   The first step is to make a proposal. This should be sent in an e-mail to
+   yeti-discuss@lists.yeti.org. A sample template is included below. It is
+   discussed and if accepted by the Yeti participants then it can proceed to
+   the next phase.
+
+2. Lab Test  
+   The next phase is to run a version of the experiment in a controlled
+   environment. The goal is to check for problems such as software crashes or
+   protocol errors that may cause failures on the Yeti network, before putting
+   onto the experimental network. This is not intended to be comprehensive, but
+   rather a simple precaution and proof-of-concept. (Note that this may be done
+   before the proposal is submitted, but feedback may result in a different
+   experimental design, which may mean that the lab test would have to be done
+   again.)
+
+3. Yeti Test  
+   The next phase actually running the experiment on the Yeti network. Details
+   of this will depend on the experiment. It must be coordinated with the Yeti
+   participants.
+
+4. Report of Findings  
+   When completed, a report of the findings of the experiment should be made.
+   It need not be an extensive document. (This may be delayed, for example if
+   the experimenter wishes to publish a paper in a peer-reviewed journal
+   first.)
+
+In all cases the main tool for analyzing results are pcap packet captures. This
+format is documented on the Wireshark Wiki:
+
+https://wiki.wireshark.org/Development/LibpcapFileFormat
+
+In both lab and Yeti experiments, we log every query received in pcap format.
+This provides both the full contents of the packet along with the timestamp of
+arrival. Generally replies are not logged, as we know the contents of reply
+packets based on the query.
+
+
+#### Research Methodology Example:
+
+We are going to be reviewing the impact of having multiple ZSK for the root
+zone. Normally the root zone has a single KSK, which signs a single ZSK, which
+in turn signs the root zone. However, we wish to explore having independent ZSK
+operators, which means each would have their own ZSK. (This means that the
+secret parrt of the ZSK never has to be given to another organization.)
+
+The first step is to document this fully, and identify possible issues. In the
+case of multiple ZSK there may be problems because of increased packet size,
+and also because of unexpected DNS resolver behavior (either bugs or varied
+interpretations of the standard specifications).
+
+The next step would be to set up a lab test. This would first mean building a
+baseline set of authority servers using a single ZSK, running expected queries
+using popular DNS resolvers (such as BIND, Unbound, and PowerDNS Recursor). The
+second step would be re-running the tests using the same set of authority
+servers using multiple ZSK.
+
+If problems were discovered in the lab, the experiment might be done. The
+results would be documented and published as a finding.
+
+If no problems were discovered, then the Yeti root zone would be modified to
+include multiple ZSK, and a key rollover would be performed to add the new ZSK.
+Traffic would be captured and monitored for changes in client behavior. A
+report detailing these changes, as well as changes in network load and so on
+would be published.
 
 ```
 ### Research capacity and supporting environment:
