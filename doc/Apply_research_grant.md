@@ -227,7 +227,7 @@ firstly benefit the project with our engineer work, by building the tesbed, main
 the sub-system of this project like website, mailing list, tickets system, Traffic 
 capture and collection, root system Monitoring etc. 
 
-We will also proposal experiment idea, test in BII lab's environment, and ask the Yeti 
+We will also propose experiment idea, test in BII lab's environment, and ask the Yeti 
 community to approve before we put into Yeti testbed. During the firstly of Yeti DNS 
 project, BII will produce some draft proposal in the scope of Yeti, test plan and technical 
 report fot some experiments. According to the result of experiments, hopefully we can output 
@@ -287,15 +287,10 @@ but it views as a good example to expand our Testbed.
 * Use some existing experimental tool like Atlas to generate traffic for special experiment;
 
 
-3. Research and experiment 
-
-* IPv6-Only Operation. We are try to run the Yeti testbed in pure IPv6 environment.
+3. Research and experiment in BII lab enviroment 
     
 * DNS Root Server renumbering. We may come up with a mechnism which dynamically 
 updates root server addresses to hint file. 
-
-* More root servers. We are going to test more than 13 root name server in Yeti testbed 
-and to see "how many is too many".
 
 * Multiple zone file editors. We will use IANA root zone as a source of zone info. Each 
 of BII, TISF, and WIDE modifies the zone independently at only its apex. Some mechinisms 
@@ -309,6 +304,10 @@ https://github.com/BII-Lab/Yeti-Project/blob/master/doc/Yeti-DM-Sync.md
 Internet root zone distribution designs, we can try multiple DMs with one KSK and one 
 ZSK for all, and we can try multiple DMs with one KSK for all and one ZSK for each.
 
+4. operation measurement in Yeti testbed 
+
+* IPv6-Only Operation. We are try to run the Yeti testbed in pure IPv6 environment.
+* More root servers. We are going to recuite 25 root server into in Yeti testbed. 
 
 ```
 
@@ -448,15 +447,27 @@ reserach outcomes of this project(in the duration of Grants):
 * Tools during the experiment of Yeti, like BIND pathces, softwire tools, some visualiztiing 
 page for syste monitoring;
 * policies recommandation from the experience of Yeti root operation experiment
-* if avaiable and applicable, it is good to prodcue some updat and reslut to APNIC blog 
+* if avaiable and applicable, it is good to prodcue some update and reslut to APNIC blog 
 periodically 
+
+Deliverable:
+D1. Two research papers or Technical reports on Yeti experiments 
+D2. One IETF experiment draft on Yeti Technical activity and findings 
+D3. One software tools developed for Yeti DNS project 
+D4. One public workshop for Yeti community and interested people
+D5. One presentation or technical report in APNIC blog
+D6. Setup cooperation and invite at least two campus/institute to join Yeti DNS project
+D7. Build a Yeti testbed with 25 root servers and deliver a full description of Yeti testbed.
 
 ```
 ### Follow-up and monitoring: 
 How the research team will track progress in a manner that is appropriate for the specific research proposed.
 
 ```
+* Three coordinators of Yeti DNS project setup one hour conference call every one or two 
+weeks to track the progress of project
 
+* In BII team we have a tickets system for specific task.
 ```
 
 ## Budget
@@ -464,42 +475,42 @@ How the research team will track progress in a manner that is appropriate for th
 ### Total funds requested in AUD
 
 ```
-Amount in AUD
+Amount in AUD： 31,000
 ```
 * Equipments
 
 ```
-Description
+Description：
 
 Amount in AUD
 ```
 * Personnel (salaries for staff hired for research project)
 
 ```
-Description
+Description：There nare two full time staff and 4 part-time engineers for Yeti DNS project in BII. It will be appriciated to cover part of the cost of personnel.   
 
-Amount in AUD
+Amount in AUD :12,0000
 ```
 * Professional services (consultant fees)
 
 ```
-Description
+Description: Expert consulting paid by hourly rate, and invite expert to travel 
 
-Amount in AUD
+Amount in AUD: 13,000
 ```
 * Research expenses
 
 ```
-Description
+Description: Print, publication
 
-Amount in AUD
+Amount in AUD: 1,000
 ```
 * International travel
 
 ```
-Description
+Description: To attend APNIC meeting for one time 
 
-Amount in AUD
+Amount in AUD: 5,000
 ```
 * Support Services
 
@@ -510,10 +521,10 @@ Amount in AUD
 ```
 
 ```
-[Y/N]No indirect cost rates or fees will be covered under this grant.
+[Y] No indirect cost rates or fees will be covered under this grant.
 ```
 ```
-[Y/N]Grant will be allocated in AUD, local currency exchange rates fluctuations will not affect the grant amount.
+[Y]Grant will be allocated in AUD, local currency exchange rates fluctuations will not affect the grant amount.
 ```
 ## Timeline
 
