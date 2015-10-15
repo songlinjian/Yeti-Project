@@ -367,7 +367,7 @@ arrival. Generally replies are not logged, as we know the contents of reply
 packets based on the query.
 
 
-#### Research Methodology Example:
+Research Methodology Example:
 
 We are going to be reviewing the impact of having multiple ZSK for the root
 zone. Normally the root zone has a single KSK, which signs a single ZSK, which
