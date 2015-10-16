@@ -14,7 +14,7 @@ with solutions identified.
 
 ## 协议分析和结果预测 Protocol anaylsis and result prediction 
 [TODO] 
-<In current IANA root zone, TTL of DS(86400) is less than TTL of DNSSEC Key(172800). So the Key will update sooner than the DNSSEC signature. So it is easy to prove that if a resolver simpley handover to another root server with different ZSK, the validation will fail.>
+In current IANA root zone, TTL of DS(86400) is less than TTL of DNSSEC Key(172800). So the Key will update sooner than the DNSSEC signature. So it is easy to prove that if a resolver simpley handover to another root server with different ZSK, the validation will fail.
 
 ## 测试方案 Testing Plan
 
