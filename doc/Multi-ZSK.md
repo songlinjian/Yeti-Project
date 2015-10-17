@@ -81,12 +81,12 @@ is needed (to obtain KSK and ZSK public keys)
 
 ### 不同的测试场景 Different scenarios of tests
 
- * Case 1: 第一Root A和Root B按照默认配置，只携带自己的ZSK，按照测试流程step1-3 观察可鞥出错的情况
+ * Case 1: 第一Root A和Root B按照默认配置，只携带自己的ZSK，按照测试流程step1-3 观察可能出错的情况
  
  * Case 2: 让Root A和Root B 同时携带两个ZSK A和ZSK B（参数相同），重复测试流程step1-3，观察
  resolver是否能够验证成功
  
- * Case 3: 在Case2的基础上，ZSK A和ZSK B的有效时间参数相同（比如1个小时），擦偶偶step4 测试，观察结果
+ * Case 3: 在Case2的基础上，ZSK A和ZSK B的有效时间参数相同（比如1个小时），重复step4 测试，观察结果
  
  * Case 4: 改变ZSK A和ZSK B的有效时间参数（比如1个小时和1个半小时），将Case 3重做一遍 
  	* 轮转期间可能有好几种可能：A,B同时轮转，A轮转B不轮转，AB都不轮转
