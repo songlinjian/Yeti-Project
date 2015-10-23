@@ -1,0 +1,370 @@
+<?xml version="1.0"?>
+<!-- This template is for creating an Internet Draft using xml2rfc,
+     which is available here: http://xml.resource.org. -->
+<!DOCTYPE rfc SYSTEM "rfc2629.dtd" [
+<!-- One method to get references from the online citation libraries.
+     There has to be one entity for each item to be referenced.
+     An alternate method (rfc include) is described in the references. -->
+
+<!ENTITY RFC1035 SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.1035.xml">
+<!ENTITY RFC1123 SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.1123.xml">
+<!ENTITY RFC3542 SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.3542.xml">
+<!ENTITY RFC5681 SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.5681.xml">
+<!ENTITY RFC6891 SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.6891.xml">
+<!ENTITY I-D.dnsop-cookies SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.draft-ietf-dnsop-cookies-02.xml">
+<!ENTITY I-D.dnsop-respsize SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.draft-ietf-dnsop-respsize-15.xml">
+]>
+<?xml-stylesheet type='text/xsl' href='rfc2629.xslt' ?>
+<!-- used by XSLT processors -->
+<!-- For a complete list and description of processing instructions (PIs),
+     please see http://xml.resource.org/authoring/README.html. -->
+<!-- Below are generally applicable Processing Instructions (PIs) that most I-Ds might want to use.
+     (Here they are set differently than their defaults in xml2rfc v1.32) -->
+<?rfc strict="yes" ?>
+<!-- give errors regarding ID-nits and DTD validation -->
+<!-- control the table of contents (ToC) -->
+<?rfc toc="yes"?>
+<?rfc tocappendix="yes"?>
+<!-- generate a ToC -->
+<?rfc tocdepth="3"?>
+<!-- the number of levels of subsections in ToC. default: 3 -->
+<!-- control references -->
+<?rfc symrefs="yes"?>
+<!-- use symbolic references tags, i.e, [RFC2119] instead of [1] -->
+<?rfc sortrefs="yes" ?>
+<!-- sort the reference entries alphabetically -->
+<!-- control vertical white space
+     (using these PIs as follows is recommended by the RFC Editor) -->
+<?rfc compact="yes" ?>
+<!-- do not start each main section on a new page -->
+<?rfc subcompact="no" ?>
+<!-- keep one blank line between list items -->
+<!-- end of list of popular I-D processing instructions -->
+<?rfc comments="no" ?>
+<?rfc inline="yes" ?>
+<rfc category="exp" docName="draft-song-yeti-testbed-experience-00" ipr="trust200902">
+
+  <front>
+
+    <title>Experiences from Root Testbed in the Yeti DNS Project</title>
+
+    <author fullname="Linjian Song" initials="L." surname="Song">
+      <organization>Beijing Internet Institute</organization>
+      <address>
+        <postal>
+          <street>2508 Room, 25th Floor, Tower A, Time Fortune</street>
+          <city>Beijing</city>
+          <region></region>
+          <code>100028</code>
+          <country>P. R. China</country>
+        </postal>
+        <email>songlinjian@gmail.com</email>
+        <uri>http://www.biigroup.com/</uri>
+      </address>
+    </author>
+
+    <date/>
+
+    <!-- Meta-data Declarations -->
+
+    <area>Internet Area</area>
+    <workgroup>Internet Engineering Task Force</workgroup>
+
+    <!-- <keyword>dns</keyword> -->
+
+    <abstract>
+      <t>This document reports and discusses issues on advanced root 
+      	services through our experiences from the experiments in Yeti 
+      	DNS project, including IPv6-only operation, root naming scheme 
+      	, KsK rollover, root renumbering, Multiple Zone signer etc. This 
+      	project founded in May 2015 and build a live root DNS server 
+      	system testbed with volunteer root servers and resolvers.</t>
+    </abstract>
+
+  </front>
+
+  <middle>
+
+    <section title="Introduction">
+    
+    <t>The top level of the unique identifier system, the DNS root system, 
+    has been operational for 25+ years. It is pivot to make the current 
+    Internet useful. So it is considered somewhat ossified for stability 
+    reasons. It is hard to test and implement new ideas evolving to a 
+    more advanced level to counter challenges like IPv6-only operation, 
+    DNSSEC key/algorithm rollover, scaling issues, etc. In order to make 
+    the test more practical, it is also necessary to involve users’ 
+    environment which is highly diversified, to study the effect of the 
+    changes in question.</t>
+
+    <t>To benefit the Internet development as a whole, the proposal of Yeti 
+    Project is formed to build a parallel experimental live IPv6 DNS root 
+    system to discover the limits of DNS root name service and deliver 
+    useful technical output. Possible research agenda will be explored on 
+    this testbed covering several aspects but not limited to:</t>
+
+	<t>* IPv6-only operation</t>
+	<t>* DNSSEC key rollover</t>
+	<t>* Renumbering issues</t>
+	<t>* Scalability issues</t>
+	<t>* Multiple zone file signers</t>
+
+    <t>Starting from May 2015, three coordinators began to build this live 
+    experimental environment and call for participants. At the time of 
+    writing, there are 14 Yeti root servers with 13 operators, and experimental 
+    traffic from vunlentee Universities, DNS vendors, Mirrored traffic and 
+    Atlas probes. Some experiments are proposed and verified in lab test.</t>
+
+
+	<t> Note that the Yeti DNS project has complete fealty to IANA as the DNS 
+	name space manager. All IANA top-level domain names will be precisely 
+	expressed in the Yeti DNS system, including all TLD data and meta-data. 
+	So, the Yeti DNS project is not an “alternative root” in any sense of 
+	that term. We hope to inform the IANA community by peer-reviewed science 
+	as to future possibilities to consider for the IANA root DNS system </t>
+	
+	<t> In order to let me people know the technical activities in Yeti DNS 
+	project, this document reports and discusses issues on advanced root services 
+	through our experiences so far from the experiments in Yeti DNS project.
+	This document will continue to be updated before the project ends</t>
+
+    </section>
+
+    <section title="Problem Statement">
+
+    <t>Some problems and policy concerns over the DNS Root Server system stem 
+    from centralization from the point of view of DNS content consumers. These 
+    include external dependencies and surveillance threats.</t>
+
+    <t><list style="symbols">
+	<t>External Dependency. Currently, there are 12 DNS Root Server operators for
+	 the 13 Root Server letters, with more than 500 instances deployed globally. 
+	 Compared to the number of connected devices, AS networks, and recursive DNS 
+	 servers, the number of root instances is far from sufficient. Connectivity 
+	 loss between one autonomous network and the IANA root name servers usually 
+	 results in loss of local service within the local network, even when internal 
+	 connectivity is perfect. </t>
+
+	<t>Surveillance risk. Even when one or more root name server anycast instances 
+	are deployed locally or in a nearby network, the queries sent to the root 
+	servers carry DNS lookup information which enables root operators or other 
+	parties to analyze the DNS query traffic. This is a kind of information 
+	leakage which is to some extent not acceptable to some policy makers.</t>
+	</list></t>
+
+	<t>People are alwasy told that current root system with 13 root severs is not 
+	able to be extended to enable more regional operators to run its own root servers
+	alleviating above concerns. To the best of authors' knowledge, there is no 
+	such scientific evidence to the question. It is still unknown.</t>
+
+	<t>There are some technical issues in the areas of IPv6 and DNSSEC, which were 
+	introduced to the DNS Root Server system after it was created, and also when 
+	renumbering DNS Root Servers.</t>
+
+	<t><list style="symbols">
+	<t>IPv6-only capability. Currently Some DNS servers which support both 
+	A and AAAA (IPv4 and IPv6) records still do not respond to IPv6 queries. IPv6 
+	introduces larger IP packet MTU (1280 bytes) and a different fragmentation 
+	model. It is not clear whether it can survive without IPv4 (in an IPv6-only 
+	environment), or what the impact of IPv6-only environment introduces to 
+	current DNS operations especially in the DNS Root Server system.</t>
+
+	<t>KSK rollover.  Currently, IANA rolls the ZSK every six weeks but the 
+	KSK has never been rolled as of writing. Is the 512 bytes DNS packet size 
+	limitation still observed? Is RFC5011 widely supported by resolvers? How 
+	about longer key with different encryption algorithm ？There are many issues 
+	still unknown. </t>
+
+	<t>Renumbering issue. It is likely that root operators may change their IP 
+	addresses for root servers as well. Since there is no dynamic update mechanism 
+	to inform resolvers and other Internet infrastructure relying on root service 
+	of such changes.</t>
+	</list></t>
+    </section>
+  
+    <section title="Yeti testbed and experiment setup">
+    	<section title="Basic blocks and configuration">
+
+    <t>The major component and building Blocks [TODO] </t>
+
+	<t>The Yeti Root system takes the IANA root zone, and performs minimal changes 
+	needed to serve the zone from the Yeti root servers instead of the IANA root 
+	servers.In Yeti, this modified root zone is generated by the Yeti Distribution 
+	Masters (DM), which provide it to the Yeti root servers.</t>
+
+	<t>While in principle this could be done by a single DM, Yeti uses a set of three 
+	DM. These DM coordinate their work so that the resulting Yeti root zone is always 
+	consistent. (We need to avoid the case where not all DM share the same set of Yeti 
+	root servers, and so they produce different versions of the Yeti root zone with 
+	the same serial.)</t>
+
+	<t>The generation process is: </t>
+
+	<t>* DM Download the latest IANA root zone</t>
+	<t>* Make modifications to change from the IANA to Yeti root servers</t>
+	<t>* Sign the new Yeti root zone</t>
+	<t>* Publish the new Yeti root zone to Yeti root servers</t>
+
+    	</section>
+    
+    	<section title="Distribution master setup">
+
+    <t>[TODO]</t>
+
+  	<t> root zone is currently downloaded using AXFR from F.ROOT-SERVERS.NET:</t>
+
+        <t>    $ dig -t axfr . @f.root-servers.net.</t>
+	<t>This appears to be the best way to get the updated version of the root zone
+	 as soon as possible. </t>
+
+	<t> The DM should check that the zone they are retrieving from IANA is properly 
+	signed, with something like ldns-verify-zone.A new version of the Yeti zone is 
+	only generated when the IANA zone changes, which is detected by the change in 
+	the serial number value in the SOA record.</t>
+
+	<t>All DM share the same KSK secret material. This generated using the BIND 9 
+	dnssec-keygen tool, and then sent via encrypted PGP to the other DM operators.</t>
+
+	<t>The root zone is modified as follows:</t>
+
+	<t>* The SOA is updated: The MNAME and RNAME are set to Yeti values</t>
+	<t>* The IANA DNSSEC information is removed: The DNSKEY records and The RRSIG 
+		and NSEC records</t>
+	<t>* The IANA root server records are removed: The NS records for [A-M].ROOT-SERVERS.NET</t>
+	<t>* The Yeti DNSSEC information is added: The DNSKEY records</t>
+	<t>* The Yeti root server records are added: The NS records and The AAAA glue records</t>
+	<t>* The Yeti root zone is signed</t>
+
+	<t>It might be worthwhile to use the serial value in the SOA field, however for now we 
+		duplicate the IANA serial value.</t>
+
+	<t>TODO..</t>
+
+    	</section>
+    	<section title="Experiments protocal">
+    	
+    	<t>The main goal of Yeti DNS Project is to act as an experimental network. 
+    	We will conduct experiments using this network. In order to make the findings 
+    	that result from these experiments more rigorous, we use an experiment 
+    	protocol.</t>
+
+    	<t>A Yeti experiment goes through four phases:</t>
+
+	<t>(1) Proposal. The first step is to make a proposal. This should be sent 
+	in an e-mail to yeti-discuss@lists.yeti.org. A sample template is included 
+	below. It is discussed and if accepted by the Yeti participants then it can 
+	proceed to the next phase.</t>
+
+	<t>(2)Lab Test. The next phase is to run a version of the experiment in a 
+	controlled environment. The goal is to check for problems such as software 
+	crashes or protocol errors that may cause failures on the Yeti network, 
+	before putting onto the experimental network. This is not intended to be 
+	comprehensive, but rather a simple precaution and proof-of-concept. (Note 
+	that this may be done before the proposal is submitted, but feedback may 
+	result in a different experimental design, which may mean that the lab test 
+	would have to be done again.)</t>
+
+	<t>(3)Yeti Test. The next phase actually running the experiment on the Yeti 
+	network. Details of this will depend on the experiment. It must be coordinated 
+	with the Yeti participants.</t>
+
+	<t>(4)Report of Findings. When completed, a report of the findings of the 
+		experiment should be made. It need not be an extensive document. (This 
+		may be delayed, for example if the experimenter wishes to publish a paper 
+		in a peer-reviewed journal first.) </t>
+
+    </section>
+
+    </section>
+
+    <section title="Experiments">
+
+    	<section title="Naming scheme">
+    		<t>Yeti Naming scheme and glue issue</t>
+    	</section>
+    	<section title="Multiple DM">
+    		<t>Multiple-Sychn / Multi-ZSK</t>
+    	</section>
+    	<section title="Renumbering issues">
+    		<t>Renumbering the hint.txt </t>
+    	</section>
+    	<section title="DNS fragements">
+    		<t>The implementation of DNS fragments</t>
+    	</section>
+    </section>
+
+    <section title="Other Technical findings and bugs">
+    	<t>IPv6 fragments</t> 
+   
+    	<t>	Root compression</t>
+
+    </section>
+
+    <section title="Open issues">
+    	<t>Other Naming experiment  etc</t>
+    
+    </section>
+  
+  </middle>
+
+  <back>
+
+    <references title="References">
+      &RFC1035;&RFC1123; &RFC5681; &RFC6891;&RFC3542;
+      &I-D.dnsop-cookies;&I-D.dnsop-respsize;
+
+    <reference anchor="Fragment-Poisonous">
+	            <front>
+	                <title>Fragmentation Considered Poisonous</title>
+			<author fullname="Herzberg, A."  initials="A." surname="Herzberg"></author>
+			<author fullname=" H. Shulman"  initials="H." surname="Shulman"></author>
+			<date year="2012" />            
+	            </front>
+	   </reference>
+	   <reference anchor="SAC016">
+            <front>
+                <title>Testing Firewalls for IPv6 and EDNS0 Support</title>
+                <author>
+                    <organization>ICANN Security and Stability Advisory Committee</organization>
+                </author>
+                <date year="2007" />
+            </front>
+     </reference>
+     
+     <reference anchor="T-DNS" target="http://www.isi.edu/~johnh/PAPERS/Zhu14b.pdf">
+	        <front>
+	                <title>T-DNS: Connection-Oriented DNS to Improve Privacy and Security (extended)</title>
+			<author fullname="Liang Zhu"  initials="L" surname="Zhu"></author>
+			<author fullname="Zi Hu"  initials="Z" surname="Hu"></author>
+			<author fullname="J. Heidemann"  initials="J." surname="Heidemann"></author>
+			<date year="2007" />            
+		</front>
+	</reference>
+		   <reference anchor="SAC035">
+            <front>
+                <title>DNSSEC Impact on Broadband Routers and Firewalls </title>
+                <author>
+                    <organization>ICANN Security and Stability Advisory Committee</organization>
+                </author>
+                <date year="2008" />
+            </front>
+     </reference>
+     </references>
+
+    <section title="Change History (to be removed before publication)">
+      <t>
+        <list style="symbols">
+
+          <t>
+	  draft-dnsop-dns-message-fragments-00
+          <vspace/>
+          Initial draft.
+          </t>
+
+        </list>
+      </t>
+    </section>
+
+  </back>
+</rfc>
+
