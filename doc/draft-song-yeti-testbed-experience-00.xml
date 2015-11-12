@@ -321,6 +321,42 @@
         distributed around the world. As one of operational research goal, all authoritative 
         servers are required to work in IPv6 only environment.</t>
 
+          <figure>
+  <artwork> 
+    <![CDATA[
+.                              3600000    IN   NS       bii.dns-lab.net                         
+bii.dns-lab.net                3600000    IN   AAAA     240c:f:1:22::6                          
+.                              3600000    IN   NS       yeti-ns.tisf.net                        
+yeti-ns.tisf.net               3600000    IN   AAAA     2001:559:8000::6                        
+.                              3600000    IN   NS       yeti-ns.wide.ad.jp                      
+yeti-ns.wide.ad.jp             3600000    IN   AAAA     2001:200:1d9::35                        
+.                              3600000    IN   NS       yeti-ns.as59715.net                     
+yeti-ns.as59715.net            3600000    IN   AAAA     2a02:cdc5:9715:0:185:5:203:53           
+.                              3600000    IN   NS       dahu1.yeti.eu.org                       
+dahu1.yeti.eu.org              3600000    IN   AAAA     2001:4b98:dc2:45:216:3eff:fe4b:8c5b     
+.                              3600000    IN   NS       ns-yeti.bondis.org                      
+ns-yeti.bondis.org             3600000    IN   AAAA     2a02:2810:0:405::250                    
+.                              3600000    IN   NS       yeti-ns.ix.ru                           
+yeti-ns.ix.ru                  3600000    IN   AAAA     2001:6d0:6d06::53                       
+.                              3600000    IN   NS       yeti.bofh.priv.at                       
+yeti.bofh.priv.at              3600000    IN   AAAA     2a01:4f8:161:6106:1::10                 
+.                              3600000    IN   NS       yeti.ipv6.ernet.in                      
+yeti.ipv6.ernet.in             3600000    IN   AAAA     2001:e30:1c1e:1::333                    
+.                              3600000    IN   NS       yeti-dns01.dnsworkshop.org              
+yeti-dns01.dnsworkshop.org     3600000    IN   AAAA     2001:1608:10:167:32e::53                
+.                              3600000    IN   NS       yeti-ns.conit.co                        
+yeti-ns.conit.co               3600000    IN   AAAA     2607:ff28:2:10::47:a010                 
+.                              3600000    IN   NS       dahu2.yeti.eu.org                       
+dahu2.yeti.eu.org              3600000    IN   AAAA     2001:67c:217c:6::2                      
+.                              3600000    IN   NS       yeti.aquaray.com                        
+yeti.aquaray.com               3600000    IN   AAAA     2a02:ec0:200::1                         
+.                              3600000    IN   NS       yeti-ns.switch.ch                       
+yeti-ns.switch.ch              3600000    IN   AAAA     2001:620:0:ff::29    
+  ]]>
+  </artwork>
+</figure>
+<t>Figure 2. the yeti root server in hint file </t>
+
       <t>Since Yeti is a scientific research project, it needs to capture DNS traffic sent for 
         later analysis. Today this is done using dnscap, which is a DNS-specific tool to produce 
         pcap files. There are several versions of dnscap floating around, some people use the V
@@ -358,13 +394,9 @@
         is to using some traffic generating tool such as Atlas probs to generate specific queries 
         against Yeti server</t>
     	</section>
-    	
-
     </section>
 
-    <section title="Experiments">
-
-    	<section title="Experiments protocal">
+    <section title="Experiments in Yeti testbedd">
     	
     	<t>The main goal of Yeti DNS Project is to act as an experimental network. 
     	We will conduct experiments using this network. In order to make the findings 
@@ -372,48 +404,206 @@
     	protocol.</t>
 
     	<t>A Yeti experiment goes through four phases:</t>
+        <t> <list style="symbols">
+    	<t>Proposal. The first step is to make a proposal. It is discussed and if accepted 
+        by the Yeti participants then it can proceed to the next phase.</t>
 
-	<t>(1) Proposal. The first step is to make a proposal. This should be sent 
-	in an e-mail to discuss@lists.yeti.org. A sample template is included 
-	below. It is discussed and if accepted by the Yeti participants then it can 
-	proceed to the next phase.</t>
+	     <t>Lab Test. The next phase is to run a version of the experiment in a controlled 
+        environment. The goal is to check for problems such as software crashes or protocol 
+        errors that may cause failures on the Yeti network, before putting onto the 
+        experimental network. </t>
 
-	<t>(2)Lab Test. The next phase is to run a version of the experiment in a 
-	controlled environment. The goal is to check for problems such as software 
-	crashes or protocol errors that may cause failures on the Yeti network, 
-	before putting onto the experimental network. This is not intended to be 
-	comprehensive, but rather a simple precaution and proof-of-concept. (Note 
-	that this may be done before the proposal is submitted, but feedback may 
-	result in a different experimental design, which may mean that the lab test 
-	would have to be done again.)</t>
+	     <t>Yeti Test. The next phase actually running the experiment on the Yeti network. 
+        Details of this will depend on the experiment. It must be coordinated with the Yeti 
+        participants.</t>
 
-	<t>(3)Yeti Test. The next phase actually running the experiment on the Yeti 
-	network. Details of this will depend on the experiment. It must be coordinated 
-	with the Yeti participants.</t>
+	     <t>Report of Findings. When completed, a report of the findings of the experiment 
+        should be made. It need not be an extensive document. </t>
+      </list></t>
+       <t> In this section, we are going to introduce some experiments implemented and 
+        planned in Yeti project.</t>
 
-	<t>(4)Report of Findings. When completed, a report of the findings of the 
-		experiment should be made. It need not be an extensive document. (This 
-		may be delayed, for example if the experimenter wishes to publish a paper 
-		in a peer-reviewed journal first.) </t>
+    	<section title="Naming scheme and glue issue">
+    
+      <t>In root server history, naming scheme for individual root server is not fixed. 
+      Current IANA Root server adopt [a-m].root-servers.net to represent 13 servers which 
+      are labeled with letter from A to M. For example, L root operated by ICANN uses 
+      l.root-servers.net to represent their server as NS. One reason behind this naming scheme 
+      is that the common suffix 'root-servers.net' can be compressed in DNS massage to 
+      produce smaller DNS response.</t>
 
-    </section>
-    	<section title="Naming scheme">
-    		<t>Yeti Naming scheme and glue issue</t>
+      <t>Different from IANA root naming scheme, Yeti root system just using separate and normal 
+      domain for root servers which is shown in figure 2. The motivation of this naming scheme 
+      in Yeti is that it intentionally produces larger packets for priming response for Yeti 
+      test reason. However, the change of name scheme not only affect the size of priming 
+      response, but also change the content in additional section of the response</t>
+
+      <t>
+      When resolver bootstrap, it sends a 'NS-for-dot' query to root serer which is called 
+      priming query[]. It looks like this with the "dig" command:</t>
+
+      <t>$ dig @a.root-servers.net -t ns +norecurse +edns +nodnssec .</t>
+
+      <t>Normally in IANA root system the priming response contains the _names_ of the root 
+        servers in the answer section and the _addresses_ of the root servers in the additional 
+        section. The additional section data is what the resolvers need to actually perform 
+        recursion. Shown as below: </t>
+          <figure>
+  <artwork> 
+    <![CDATA[
+In priming response : 
+
+Answer Section: 
+---------------
+.        518400  IN  NS  a.root-servers.net.
+.        518400  IN  NS  b.root-servers.net.
+  ...
+.        518400  IN  NS  m.root-servers.net.
+
+Addtional section: 
+------------------
+a.root-servers.net.     3600000  IN  A 198.41.0.4
+b.root-servers.net.     3600000  IN  A 192.228.79.201
+  ...
+m.root-servers.net.     3600000  IN  AAAA  2001:dc3::35
+          ]]>
+  </artwork>
+</figure>
+      <t>In IANA root system, all the root server returns the "a.root-servers.net" addresses 
+        in the additional section, becuase root server not only answer for root zone , but 
+        also answer for "root-servers.net" zone. Note that BIND will not behave like this if 
+        it is not configured for the "root-servers.net" zone. NSD happily returns such "glue" in 
+        the additional section, whether configured for the "root-servers.net" zone or not.</t>
+    
+      <t>Yeti root naming scheme uses seperate and independent domain for individual root 
+        server. It such case, the priming response from Yeti root server will only contain 
+        the A&amp;AAAA record of that responding server in BIND9. However we want the Yeti root 
+        servers to respond to priming queries with the addresses of all Yeti root servers 
+        in the additional section. This will make them operate as similar to the IANA root 
+        servers as possible.</t>
+
+      <t>In Yeti root system, there are two approaches adopted in different root servers. 
+        One is to patch BIND 9 so that it includes the glue addresses in the additional 
+        section. The other one is to add a zone file for each root server and answer for 
+        all of them at each Yeti server. That means Each Yeti root server would have a 
+        small zone file for "bii.dns-lab.net", "yeti-ns.wide.ad.jp", "yeti-ns.tisf.net", 
+        and so on.</t>
+
     	</section>
     	<section title="Multiple DM">
     		<t>Multiple-Sychn / Multi-ZSK</t>
+
+      <t>According to the Problem statment of Yeti DNS project, more independent participants 
+        and operators of root system is desirable. As the name implies, Multi-ZSK mode will 
+        introduce different ZSKs sharing a single unique KSK, other than the IANA root system 
+        who use single ZSK to sign the root zone. On the condition of good availability 
+        and consistency on root system, Multi-ZSK proposal is designed to give each DM operator 
+        enough room to manage their own ZSK, by choosing different ZSK, length, duration and 
+        even the encryption algorithm etc. </t>
+
+      <t>Accoring to the Yeti experiment protocol, a lab test was done to verify the concept 
+        and validity of Multi-ZSK. The purpose of the test are twofolds: 1) To test whether this 
+        proposal can be implemented by current DNS protocol &amp;software (to see if there 
+        should be some extra modification to protocol or software) 2) To demonstrate the impact 
+        of Multi-ZSK proposal to the current root system</t>
+
+       <t>Build a test topology like figure 1, with 2 Root servers and a resolver(BIND) and the 
+        hint file of this test only contains the two DM servers. In the first time slot, Root A is 
+        up and Root B is turned off. Let resolver bootstrap from Root A and query a certain signed 
+        TLD(or junk query). For the second time slot, turn off Root A and turn on Root B. Let resolver shift to Root B to look up another TLD(or junk query). We compare the different time slot to 
+        see whether the resolver can validate the DNSSEC signiture</t>
+  
+            <figure>
+  <artwork> 
+    <![CDATA[
++---------------+          +---------------+  
+|    Root A     |          |     Root B    |  
+|   (ZSK A)     |          |     (ZSK B)   |  
++-------+-------+          +--------+------+  
+        |                           |        
+--------+------------+--------------+--------                       
+                     |                        
+           +---------+----------+             
+           |                    |                      
+           |     Resolver       |                        
+           +--------------------+  
+          ]]>
+  </artwork>
+</figure>
+<t>Figure 3. Multi-ZSK lab test topology</t>
+
+      <t>There are two comparing cases in this test:  </t>
+<t> <list style="symbols">
+      <t>Case 1: Assign one ZSK to the smart sign process on each DM, which means the root zone 
+only contain one single ZSK.</t>
+
+      <t>Case 2: Assign both ZSK A and ZSK B to the smart sign process on each DM, which means the 
+root zone contain two ZSK. In this case, it is required that Root A and Root B to share 
+their public ZSK to each other before root zone signed.</t>
+</list></t>
+
+    <t>In case 1 SERVFAIL is received during switching because the resolve can not validate the 
+      signature signed by Root B after switching. In case 2 NOERROR is recieved. It is the actual 
+      demo how Multi-ZSK works by adding multiple ZSK to the root zone. As a result, the resolve 
+      will cache the key sets instead of single ZSK to validate the data no matter it is sign by 
+      Root A or Root B. As follow-up test, unbound also passed the test with morn than 10 DMs and 
+      10 ZSKs </t>
+    
+      <t> Although we can add more DM and ZSK into the test, but adding more ZSKs to root zone 
+        will enlarge the DNS response size for DNSKEY queries which may be a concern given the 
+        limitation of DNS packet size. Current IANA root server operators are inclined to keep 
+        the packets size as small as possible. So the number of DM and ZSK will be parameter which 
+        is decided based on operation experience. In Current Yeti root testbed, the parameter is 
+        three</t>
     	</section>
-    	<section title="Renumbering issues">
-    		<t>Renumbering the hint.txt </t>
+    	<section title="Root Renumbering issue and hint file update">
+    <t> With the nearest renumbering plan of H root Server's IP address, there is a discussion 
+      of ways that resolvers can update their hint file. Traditional ways includes using ftp protocol 
+      by doing a wget and dig servers address manually. Each way would depend on operators 
+      manual operation. As a result, there is many old machines could not update its hint-file 
+      rightly. As a proof, after done renumbering for thirteen years, there is an observation 
+      that the "Old J-Root" can still receives DNS query traffic[OARC slides].</t>
+
+    <t>This experiment proposal aims to find a automatic way for hint-file updating. The 
+      already-done works is a shell script tool which provides the function that update a hint-file 
+      in file system automatically with DNSSEC and trust anchor validation</t>
+
+
+    <t>The methodology is straightforward. The tool first queries the NS list for "." domain 
+      and queries A and AAAA record for every domain on the NS list. It requires DNSSEC validation 
+      for both signiture and trust anchor for all the answers. After getting all the answers, 
+      the tool compares the new hint file to the old one. If there is a difference, it renames 
+      the old one with a timestamp and replace the old one with the new one. Otherwise the tool 
+      deletes the new hintfile and nothing will be changed.</t>
+
+    <t>Note that in current IANA root system the root NS record is not signed due to lack of 
+      incentive. So the tool can not fully work in the production network. In Yeti root 
+      system it is required that NS record should be signed which provides perfet test 
+      envieroment for such proposal.</t>
+
     	</section>
     	<section title="DNS fragements">
-    		<t>The implementation of DNS fragments</t>
+
+      <t>In considertion for new DNS protocal and operation, there is always a hard limit 
+        on the DNS packts size. Take Yeti for example: adding more root severs, Yeti naming 
+        Scheme, rolling the KSK and Multi-ZSK increase the packets size with no doubt. The 
+        fear of large DNS packets mainly stem from tow aspects: one is IP-fragements[] and 
+        the other is frequenetly falling back to TCP.</t>
+
+      <t>In Yeti testbed we implement a mechnism which supports larger DNS packet working 
+        around the IP-layer fragment caused by middle box misbehavior(in IPv4) and IPv6 MTU 
+        limitation by splitting a single DNS message across multiple UDP datagrams. This DNS 
+        fragements mechanism is documented in [draft-muks-dns-message-fragments] as an 
+        experimental IETF draft.</t>
+
     	</section>
     </section>
 
     <section title="Other Technical findings and bugs">
     	<t>IPv6 fragments</t> 
+
     	<t>KSK rollover</t>
+
    
     	<t>	Root compression</t>
 
