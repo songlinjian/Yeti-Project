@@ -510,8 +510,9 @@ m.root-servers.net.     3600000  IN  AAAA  2001:dc3::35
        <t>Build a test topology like figure 1, with 2 Root servers and a resolver(BIND) and the 
         hint file of this test only contains the two DM servers. In the first time slot, Root A is 
         up and Root B is turned off. Let resolver bootstrap from Root A and query a certain signed 
-        TLD(or junk query). For the second time slot, turn off Root A and turn on Root B. Let resolver shift to Root B to look up another TLD(or junk query). We compare the different time slot to 
-        see whether the resolver can validate the DNSSEC signiture</t>
+        TLD(or junk query). For the second time slot, turn off Root A and turn on Root B. Let resolver 
+        shift to Root B to look up another TLD(or junk query). We compare the different time slot to 
+        see whether the resolver can validate the DNSSEC signiture.</t>
   
             <figure>
   <artwork> 
@@ -595,17 +596,17 @@ their public ZSK to each other before root zone signed.</t>
         limitation by splitting a single DNS message across multiple UDP datagrams. This DNS 
         fragements mechanism is documented in [draft-muks-dns-message-fragments] as an 
         experimental IETF draft.</t>
-
     	</section>
+    	
+    	<section title="The firsty KSK rollover experiment in Yeti">
+    		    	<t>TODO by Shane</t>	
+    	</section>	
     </section>
 
     <section title="Other Technical findings and bugs">
-    	<t>IPv6 fragments</t> 
+    	<t>IPv6 fragments[Davey]</t> 
 
-    	<t>KSK rollover</t>
-
-   
-    	<t>	Root compression</t>
+    	<t></t>Root compression[Davey]</t>
 
     </section>
 
