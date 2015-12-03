@@ -59,9 +59,11 @@ Compare the consisency in following apsects:
       * the ratio of TC trancation
 
 ### Query taffic analysis (From DSC page?) 
-	* Ratio of TCP and UDP query
-	* Statistics of lenght of response
-	* Ratio of A and AAAA query
+* Ratio of TCP and UDP query
+* Statistics of lenght of response
+* Ratio of A and AAAA query
+
+Davey: How about provide a page with some test scripts or commonds to ask anyone try to execute locally and upload their result? Like What OARC dose for reply-size-test : https://www.dns-oarc.net/oarc/services/replysizetest 
 
 ## 3. other system in Yeti project
 
