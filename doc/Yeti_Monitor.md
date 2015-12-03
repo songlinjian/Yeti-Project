@@ -58,6 +58,11 @@ Compare the consisency in following apsects:
       * The ratio of unanswered packets?
       * the ratio of TC trancation
 
+### Query taffic analysis (From DSC page?) 
+	* Ratio of TCP and UDP query
+	* Statistics of lenght of response
+	* Ratio of A and AAAA query
+
 ## 3. other system in Yeti project
 
 ### DSC/data collecting system
