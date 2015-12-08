@@ -376,7 +376,7 @@ SERIAL will trigger the operation of adding these changes to Yeti root zone.</t>
     <t>the SERIAL when this information is active</t>
   </list></t>
 
-  <t>The theory of operation is straight that each DM operator runs a Git
+  <t>The theory of operation is that each DM operator runs a Git
    repository, containing files with the information needed to produce
    the Yeti root zone.  When a change is desired (such as adding a new
    server or rolling the ZSK), a DM operator updates the local Git
@@ -395,7 +395,7 @@ SERIAL will trigger the operation of adding these changes to Yeti root zone.</t>
    time of writing, there are 14 Yeti root servers distributed around
    the world.  As one of operational research goal, all authoritative
    servers are required to work in an IPv6-only environment. In addition,
-   different from IANA root, Yeti root server only serve the Yeti root zone, 
+   until the IANA root, Yeti root server only serve the Yeti root zone, 
    other than root-servers.org zone and .arpa zone.</t>
 
           <figure>
@@ -438,7 +438,7 @@ yeti-ns.switch.ch              3600000    IN   AAAA     2001:620:0:ff::29
    traffic sent for later analysis.  Today some servers use dnscap,
    which is a DNS-specific tool to produce pcap files.  There are
    several versions of dnscap floating around; some people use the
-   VeriSign one.  Since dnscap loses packets in some cases (tested on a
+   Verisign one.  Since dnscap loses packets in some cases (tested on a
    Linux kernel), some people use pcapdump.  It requires the patch
    attached to this bug report <xref target="dnscap-bug-report"/></t>
 
@@ -462,7 +462,7 @@ yeti-ns.switch.ch              3600000    IN   AAAA     2001:620:0:ff::29
       <t>In client side of Yeti project, we expect participants and volunteers
    from individual researchers, labs of universities, companies and
    institutes, and vendors (for example, the DNS software implementers),
-   developers of CPE devices &amp;IoT devices, and middle box developers
+   developers of CPE devices &amp; IoT devices, and middle box developers
    who can test their product and connect their own testbed into Yeti
    testbed.  Resolvers donated by Yeti volunteers are required to be
    configured with Yeti hint file and Yeti DNSSEC KSK.  It is required
@@ -472,9 +472,9 @@ yeti-ns.switch.ch              3600000    IN   AAAA     2001:620:0:ff::29
 
       <t>At the time of writing several universities and labs have joined us
    and contributed certain amount of traffic to Yeti testbed. But it is
-   far from the desired volume of the experiment traffic. So Yeti adopts two
-   alternative ways to increase the experimental traffic in Yeti testbed
-   to check the functionality of Yeti root system.</t>
+   far from the desired volume of experiment traffic. So Yeti adopts two
+   alternative ways to increase the experimental traffic in the Yeti testbed
+   and check the functionality of Yeti root system.</t>
 
       <t>One approach is to mirror the real traffic by off-path method and
    reply it into Yeti testbed; this is implemented by one of the Yeti
@@ -484,7 +484,7 @@ yeti-ns.switch.ch              3600000    IN   AAAA     2001:620:0:ff::29
     	</section>
     </section>
 
-    <section title="Experiments in Yeti Testbedd">
+    <section title="Experiments in Yeti Testbed">
     	
     	<t> The main goal of Yeti DNS Project is to act as an experimental
    network. Experiments will be conducted on this network.  In order
@@ -537,7 +537,7 @@ yeti-ns.switch.ch              3600000    IN   AAAA     2001:620:0:ff::29
 
       <t>$ dig @a.root-servers.net -t ns +norecurse +edns +nodnssec </t>
 
-      <t>Normally in IANA root system the priming response contains the
+      <t>Normally in the IANA root system the priming response contains the
    _names_ of the root servers in the answer section and the _addresses_
    of the root servers in the additional section.  The additional
    section data is what the resolvers need to actually perform
@@ -574,9 +574,9 @@ m.root-servers.net.     3600000  IN  AAAA  2001:dc3::35
     
       <t>The Yeti root naming scheme uses separate and independent domain for
    individual root servers.  It this case, the priming response from
-   Yeti root servers will only contain the A&amp;AAAA records of that
+   Yeti root servers will only contain the A &amp; AAAA records of that
    responding server in BIND 9.  However it is desired that the Yeti root servers
-   to respond to priming queries with the addresses of all Yeti root
+   respond to priming queries with the addresses of all Yeti root
    servers in the additional section.  This will make them operate as
    similar to the IANA root servers as possible.</t>
 
@@ -605,7 +605,7 @@ m.root-servers.net.     3600000  IN  AAAA  2001:dc3::35
       <t> According to the Yeti experiment protocol, a lab test was done to
    verify the concept and validity of Multi-ZSK.  The purpose of the
    test is two-fold: 1) To test whether this proposal can be implemented
-   by current DNS protocol&amp;software (to see if there should be some
+   by current DNS protocol &amp; software (to see if there should be some
    extra modification to protocol or software), and 2) To demonstrate
    the impact of Multi-ZSK proposal to the current root system.</t>
 
@@ -613,9 +613,9 @@ m.root-servers.net.     3600000  IN  AAAA  2001:dc3::35
    with 2 Root servers and a resolver (BIND 9).  The hint file of this
    test only contains the two DM servers.  In the first time slot, Root
    A is up and Root B is turned off.  Let resolver bootstrap from Root A
-   and query a certain signed TLD (or junk query).  For the second time
+   and query a certain signed TLD (or a junk query).  For the second time
    slot, turn off Root A and turn on Root B.  Let resolver shift to Root
-   B to look up another TLD (or a junk query). the test result of different
+   B to look up another TLD (or a junk query). The test result of different
    time slot is compared to see whether the resolver can validate the DNSSEC
    signature.</t>
   
@@ -702,7 +702,7 @@ m.root-servers.net.     3600000  IN  AAAA  2001:dc3::35
 
       <t>In consideration of new DNS protocol and operation, there is always a
    hard limit on the DNS packet size.  Take Yeti for example: adding
-   more root servers, using the Yeti naming scheme, rolling the KSK and
+   more root servers, using the Yeti naming scheme, rolling the KSK, and
    Multi-ZSK increase the packet size.  The fear of large DNS packets
    mainly stem from two aspects: one is IP-fragments and the other is
    frequently falling back to TCP.</t>
@@ -741,7 +741,7 @@ m.root-servers.net.     3600000  IN  AAAA  2001:dc3::35
    need to be conducted.</t>
  
       <t>&lt; &lt;  It‘s worthwhile to mention that in Yeti testbed there is a 
-        lessen when the KSK rollover was implemented at the first time. It lasted for one 
+        lesson when the KSK rollover was implemented at the first time. It lasted for one 
         month and has been held off afterwards. In the first trial, it make old KSK inactive 
         in one week after new key created, and delete it in another week, which 
         is totally unaware of RFC5011. Because the hold-down timer is not correctly 
@@ -786,7 +786,7 @@ m.root-servers.net.     3600000  IN  AAAA  2001:dc3::35
       <t>Another fact is from server side in which one TCP segment of AXRF/
    IXFR is fragmented in IP layer resulting in two fragmented packets.
    This weird behavior has been documented IETF draft<xref target="I-D.andrews-tcp-and-ipv6-use-minmtu"/>. 
-   It reports a situation that man implementations of TCP running over IPv6 
+   It reports a situation that some implementations of TCP running over IPv6 
    neglect to check the IPV6_USE_MIN_MTU value when performing MSS negotiation 
    and when constructing a TCP segment.  It will cause TCP MSS option set to 1440
    bytes, but IP layer will limit the packet less than 1280 bytes and
