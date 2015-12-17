@@ -1,83 +1,127 @@
 # Yeti Monitor
 
-There is a monitoring work done in [Yeti-Health-Monitoring](https://github.com/BII-Lab/Yeti-Project/blob/master/doc/Yeti-Health-Monitoring.md). 
 
-Currently Yeti testbed lacks sufficient information to reflect the status of Yeti operation, in aspect of availability, consistency and performance.It also lacks tools to measure the result of experiments of like introducing more root server, KSK rollover, Multi-ZKSs etc.
+Currently Yeti testbed lacks sufficient information to reflect the status 
+of Yeti operation, in aspect of availability, consistency and performance.
+It also lacks tools to measure the result of experiments of like introducing 
+more root server, KSK rollover, Multi-ZKSs etc. There is a monitoring work done in [Yeti-Health-Monitoring](https://github.com/BII-Lab/Yeti-Project/blob/master/doc/Yeti-Health-Monitoring.md). 
+and displayed a simple page in http://yeti-dns.org/yeti_server_status.txt. 
 
-In this document we plan to build a more advanced monitoring tool for Yeti testbed. Note that we assume Atlas probes and any tool can be integrated into our monitor
+Note that there are may be another type of Yeti monitoring for specific experiment.
+We refer it as to tools for measurement study which is out of the scope of this 
+document and will covered by specific experiment design.
 
-## 1. Yeti Distribution Master 
+## Monitoring requirement 
 
-### Availability
+### 1. Yeti Distribution Master 
 
-* Ping6 all the servers periodically (10 minutes)
-* Send queries to all the DM server periodically (10 minutes)
-* TTL, dig query respone time
+**Availability**
 
-### Consistency
+* Ping6 (or traceroute6) all the servers periodically (3600 sec)
+* Send queries to all the DM server periodically (3600 sec)
+* Ask for zone transfer to test AXFR/IXFR periodically (3600 sec)
+* TTL, dig query response time
 
-Compare the consisency in following apsects:
-
-* Serial Number
+**Consistency**
+Send queries to each DM to check the consistency in following aspects:
+* SOA(SERIAL, MNAME, RNAME,...)
 * DNSKEY RRset
 * NS RRset
-* Root zone (TLD data)
-
-### Performance
-
-* Multi-ZSK perforamce or test(?)
-* KSK rollverover performance or test(?)
+* Root zone (TLD data)  
+<We know that Paul's zone omits "unnecessary" glue, so we need to make sure that we do NOT check for this. -Shane> 
 
 ## 2. Root server 
 
 ###Availability 
 
-Like DNSMon, Yeti monitor can help people to understand the current and historical availability of root serer in whole (or each one) , from various geographic locations. There are some measurement metrics and tools suggestion:
+* Ping6 (or traceroute6) all the servers periodically (3600 sec)
+* Ping6 all the servers periodically (3600 sec)
+* send queries to all the server periodically (3600 sec)
+* Use a set of Atlas probes to query, and count the ratio of unanswered query.(We can use DomainMON)
+* TTL, dig query response time
 
-* Ping6 all the servers periodically (10 minutes)
-* send queries to all the server periodically (10 minutes)
-* Use a set of probes（100）to query, and count the number and ratio of unanswered query.
-* TTL, dig query respone time
-* Traceroute on demand (print dug information in the we bpage from different probes)
+**Consistency**
+Send queries to each DM to check the consistency in following aspects:
+* SOA(SERIAL, MNAME, RNAME,...)
+* DNSKEY RRset
+* NS RRset
+* Root zone (TLD data)  
 
-### Consistency
+**Authoritative Server function check**
 
-Compare the consisency in following apsects:
+* EDNS0 support or not
+* DNSSEC support or not
+* Allow AXFR/IXFR or not
+* IPv6-only or not
+* A/AAAAA support or not
 
-  * Serial Number
-  * DNSKEY RRset
-  * NS RRset
-  * Root zone (TLD data)
-
-### Performance
-
-  * DNSSEC validation
-      * Resolver validataion test(?)
-
-  * Larege DNS packets(Priming+DNSSEC, DNSKEY, Any query)
-      * The ratio of unanswered packets?
-      * the ratio of TC trancation
-
-### Query taffic analysis (From DSC page?) 
+**Query taffic analysis (From DSC page?)**
 * Ratio of TCP and UDP query
 * Statistics of lenght of response
 * Ratio of A and AAAA query
 
-Davey: How about provide a page with some test scripts or commonds to ask anyone try to execute locally and upload their result? Like What OARC dose for reply-size-test : https://www.dns-oarc.net/oarc/services/replysizetest 
+Davey: How about provide a page with some test scripts or commands 
+to ask anyone try to execute locally and upload their result? Like 
+What OARC dose for reply-size-test : https://www.dns-oarc.net/oarc/services/replysizetest 
 
-## 3. other system in Yeti project
+### 3. other system in Yeti project
 
-### DSC/data collecting system
+**DSC/data collecting system**
 
-	Monitor root server upload data or not
+	Monitor root server upload data or not
 ### Mail system
-	up or down, debug information available  
+	
+	http/https,up or down, debug information available  
 ### Tickets system
-	up or down, debug information available  
+	
+	http/https,up or down, debug information available  
 ### Yeti web server
-	up or down, debug information available  
+	
+	http/https,up or down, debug information available  
 
+## Yeti Monitoring Design
 
+In this section we plan to design a monitoring tool for Yeti testbed according to 
+the monitoring requirement in previous section. Basically Yeti Monitor serve two 
+purpose : 1) Monitor the status of Yeti testbed and build event alert for operator 
+of Yeti testbed; 2)Give friendly visualization for audience who are interested to 
+know the general Yeti status.
 
+### Yeti Monitoring page
 
+*Yeti Root Server Status Check
+
+Provide A visualization like https://atlas.ripe.net/domainmon/yetiroot./85/f1gFuyhM/ 
+  
+<<There are some TODO tasks to upgrade this page with more option(free probe selection, 
+adding/deleting servers problem alert to Yeti operation team). Shane will follow up 
+this thread with RIPE Atlas people.>>
+    
+* Zone consistency check (15 root server and DMs)
+
+additional section in priming response.
+	
+*  Server function check for (for 15 root server)
+
+EDNS0 support or not, DNSSEC support or not, Allow AXFR/IXFR or not, IPv6-only or not, A/AAAAA support or not
+
+* Packet size check
+ 
+Response to Priming+DNSSEC, DNSKEY+DNSSEC, (print the dig response)
+
+* Compression with IANA system (root zone,and … )
+
+### Yeti Event Alert 
+
+* Event Alert for Yeti root server failure.
+
+Combine Atlas status check with Nagios to build some alert of failure of server availability. Automatically send mails to contact of yeti server operator.
+
+* Event Alert for Yeti consistency failure 
+	
+Accroding to the status check of SOA, ZSK, KSK, NS RR. Automatically send mails to Yeti distributor mailing list.
+
+* Event Alert for Yeti supporting system
+
+Web, Mailing list, tickets, DSC server, 15 server uploading status
 
