@@ -89,13 +89,13 @@ know the general Yeti status.
 
 ### Yeti Monitoring page
 
-*Yeti Root Server Status Check
+* Yeti Root Server Status Check
 
 Provide A visualization like https://atlas.ripe.net/domainmon/yetiroot./85/f1gFuyhM/ 
   
-<<There are some TODO tasks to upgrade this page with more option(free probe selection, 
+There are some TODO tasks to upgrade this page with more option(free probe selection, 
 adding/deleting servers problem alert to Yeti operation team). Shane will follow up 
-this thread with RIPE Atlas people.>>
+this thread with RIPE Atlas people.
     
 * Zone consistency check (15 root server and DMs)
 
@@ -119,7 +119,7 @@ Combine Atlas status check with Nagios to build some alert of failure of server 
 
 * Event Alert for Yeti consistency failure 
 	
-Accroding to the status check of SOA, ZSK, KSK, NS RR. Automatically send mails to Yeti distributor mailing list.
+According to the status check of SOA, ZSK, KSK, NS RR. Automatically send mails to Yeti distributor mailing list.
 
 * Event Alert for Yeti supporting system
 
