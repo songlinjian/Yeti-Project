@@ -53,7 +53,7 @@ Send queries to each DM to check the consistency in following aspects:
 * DNSSEC support or not
 * Allow AXFR/IXFR or not
 * IPv6-only or not
-* A/AAAAA support or not
+* A/AAAA support or not
 
 **Query taffic analysis (From DSC page?)**
 * Ratio of TCP and UDP query
@@ -103,13 +103,13 @@ additional section in priming response.
 	
 *  Server function check for (for 15 root server)
 
-EDNS0 support or not, DNSSEC support or not, Allow AXFR/IXFR or not, IPv6-only or not, A/AAAAA support or not
+EDNS0 support or not, DNSSEC support or not, Allow AXFR/IXFR or not, IPv6-only or not, A/AAAA support or not
 
 * Packet size check
  
 Response to Priming+DNSSEC, DNSKEY+DNSSEC, (print the dig response)
 
-* Compression with IANA system (root zone,and … )
+* Compareation with IANA system ( diff IANA and Yeti unsigned root zone file)
 
 ### Yeti Event Alert 
 
